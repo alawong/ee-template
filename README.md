@@ -10,7 +10,7 @@ An example EE configuration has been provided within the `example/` directory. T
 
 It is recommended that the base and builder images (used to build the EE upon) remain the same. These images contain the minimum requirements to run Ansible core.
 
-## Using ee-template
+## Using aa-ee-template
 
 ### Requirements
 
@@ -28,7 +28,7 @@ The following is required prior to building an EE:
 
 Initialise your new EE repository within Bitbucket, following the naming convention `aa-ee-<< EE name >>`. Clone both the new repository, and `aa-ee-template` onto your server.
 
-Change directory into the repository. Then, copy the contents of this repository into your new repository `cp ee-template/ .`.
+Change directory into the repository. Then, copy the contents of this repository into your new repository `cp aa-ee-template/ .`.
 
 Remove any dependency files that are unrequired, and add the dependencies in.
 
