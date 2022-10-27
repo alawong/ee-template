@@ -30,9 +30,9 @@ Initialise your new EE repository within Bitbucket, following the naming convent
 
 Change directory into the repository. Then, copy the contents of the _aa-ee-template_ repository into the new EE repository `cp ../aa-ee-template/ .`.
 
-Remove any dependency files that are unrequired, and add the dependencies in. Edit _execution-environment.yml_ to remove any unrequired dependency files, and ansible.cfg if If Red Hat Automation Hub and Private Automation Hub collections are not required.
+Remove any dependency files that are unrequired, and add the dependencies in. Edit _execution-environment.yml_ to remove any unrequired dependency files, and ansible.cfg if Red Hat Automation Hub and Private Automation Hub collections are not required.
 
-If they are required, credentials need to be added into the _ansible.cfg_ file. Export the offline tokens into environment variables.
+If they are required, credentials need to be added into the _ansible.cfg_ file. Export the offline tokens into environment variables as well as the PAH password.
 
 ```shell
 export TOKEN=<AUTOMATION_HUB_TOKEN>

@@ -7,12 +7,12 @@ auth_url=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-conn
 
 token=$AUTOMATION_HUB_TOKEN
 
-[galaxy_server.community]
-url=https://galaxy.ansible.com
-
 [galaxy_server.private_automation_hub]
 url=aap-hub-001.alfa.local/api/galaxy/
 username=<< username >>
 password=$PAH_PASSWORD
 
 token=$PAH_TOKEN
+
+[galaxy_server.community]
+url=https://galaxy.ansible.com
