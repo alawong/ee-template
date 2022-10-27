@@ -1,0 +1,4 @@
+collections:
+  - name: community.postgresql
+  - name: << collection name >>
+    src: << source URL if collection is not within galaxy.ansible.com >>
