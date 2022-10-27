@@ -6,7 +6,7 @@ This repository also includes a template ansible.cfg file that will allow you to
 
 For Red Hat Automation Hub and Private Automation Hub, their offline authentication tokens will need to be injected into the `ansible.cfg` template file.
 
-An example EE configuration has been provided within the `example/` directory. This directory should be deleted prior to committing and pushing the code to the remote repository.
+An example EE configuration has been provided within the `example/` directory. This directory should be deleted prior to committing and pushing the code to the new EE's remote repository.
 
 It is recommended that the base and builder images (used to build the EE upon) remain the same. These images contain the minimum requirements to run Ansible core.
 
