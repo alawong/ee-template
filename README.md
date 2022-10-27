@@ -1,8 +1,8 @@
-# ee-template
+# aa-ee-template
 
-A template repository for a new EE. 
+A template repository for a new EE.
 
-This repository also includes a template ansible.cfg file that will allow you to download and install collections stored within Red Hat Automation Hub, Ansible Galaxy, and the AAP Private Automation Hub. 
+This repository also includes a template ansible.cfg file that will allow you to download and install collections stored within Red Hat Automation Hub, Ansible Galaxy, and the AAP Private Automation Hub.
 
 For Red Hat Automation Hub and Private Automation Hub, their offline authentication tokens will need to be injected into the `ansible.cfg` template file.
 
@@ -26,9 +26,9 @@ The following is required prior to building an EE:
   * Ansible collections (these can be sourced from Red Hat Automation Hub, Ansible Galaxy, or can be custom collections downloaded from the AAP2 Private Automation Hub)
     * For Red Hat Automation Hub and Private Automation Hub collections, their respective API offline tokens are required
 
-Initialise your new EE repository within Bitbucket, following the naming convention `ee-<< EE name >>`. Clone both the new repository, and `ee-template` onto your server.
+Initialise your new EE repository within Bitbucket, following the naming convention `aa-ee-<< EE name >>`. Clone both the new repository, and `aa-ee-template` onto your server.
 
-Change directory into the repository. Then, copy the contents of this repository into your new repository `cp ee-template/ .`. 
+Change directory into the repository. Then, copy the contents of this repository into your new repository `cp ee-template/ .`.
 
 Remove any dependency files that are unrequired, and add the dependencies in.
 
