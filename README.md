@@ -1,53 +1,45 @@
-# aa-ee-template
+# ee-template
 
-A template repository for a new EE.
-
-This repository also includes a template ansible.cfg file that will allow you to download and install collections stored within Red Hat Automation Hub, Ansible Galaxy, and the AAP Private Automation Hub.
-
-For Red Hat Automation Hub and Private Automation Hub, their offline authentication tokens will need to be injected into the _ansible.cfg_ template file.
-
-An example EE configuration has been provided within the _example/_ directory. This directory should be deleted prior to committing and pushing the code to the new EE's remote repository.
+A template repository that allows for automation of EE builds.
 
 It is recommended that the base and builder images (used to build the EE upon) remain the same. These images contain the minimum requirements to run Ansible core.
 
-## Using aa-ee-template
+## Using ee-template
 
 ### Requirements
 
 The following is required prior to building an EE:
 
+
 * Access to the Red Hat Container Registry at link:registry.redhat.io
-* The following CLI tools
-  * ansible-builder to create the Containerfile used to build the EE
-  * podman to login to the Red Hat Container Registry and Tennet Container Registry (TCR), and to build the EE
-* Ansible playbook dependencies
-  * System packages (e.g. via an RPM)
+* An Ansible host with the following:
+  * CLI tools:
+    * ansible-core or ansible
+    * ansible-builder
+    * podman
+  * redhat_cop.ee_utilities collection installed (and therefore containers.podman)
+* Dependencies required to run target Ansible playbooks:
+  * System packages
   * Python packages (i.e. via pip)
-  * Ansible collections (these can be sourced from Red Hat Automation Hub, Ansible Galaxy, or can be custom collections downloaded from the AAP2 Private Automation Hub)
-    * For Red Hat Automation Hub and Private Automation Hub collections, their respective API offline tokens are required
+  * Ansible collections (these can be sourced from Ansible Automation Hub, Ansible Galaxy, or from your Private Automation Hub)
+    * For Ansible Automation Hub and Private Automation Hub collections, their respective hostnames and API offline tokens are required
 
-Initialise your new EE repository within Bitbucket, following the naming convention `aa-ee-<< EE name >>`. Clone both the new repository, and _aa-ee-template_ onto your server.
+Initialise your new EE repository, following the naming convention `ee-<< EE name >>`. Clone both the new repository, and _ee-template_ onto your Ansible host.
 
-Change directory into the repository. Then, copy the contents of the _aa-ee-template_ repository into the new EE repository `cp ../aa-ee-template/ .`.
+Copy the contents of the _ee-template_ repository into the new EE repository.
 
-Remove any dependency files that are unrequired, and add the dependencies in. Edit _execution-environment.yml_ to remove any unrequired dependency files, and ansible.cfg if Red Hat Automation Hub and Private Automation Hub collections are not required.
+`cp -r ee-template/ ee-xxx`
 
-If they are required, credentials need to be added into the _ansible.cfg_ file. Export the offline tokens into environment variables as well as the PAH password.
+Add the EE requirements into ee_build.yml under the `ee_list` variable. Remove any requirements (python, galaxy, or bindep) that are unneeded.
 
-```shell
-export TOKEN=<AUTOMATION_HUB_TOKEN>
-export PAH_PASSWORD=<PAH password>>
-export PAH_TOKEN=<PAH token>
-```
+Add the following credentials to vars/variables.yml:
 
-Generate the _ansible.cfg_ file by running `envsubst < ansible.cfg.template > ansible.cfg`.
+* registry.redhat.io details - used to pull the base and builder images
+* Private Automation Hub details - used to install Ansible collections
+* Container Registry - where the EE will be pushed to once built
 
 ## Building the Execution Environment
 
-Run `ansible-builder create` within the root directory of the EE repository to create the `context/` directory. This will also create the Containerfile which is used to build the EE.
+Run the command `ansible-playbook ee_build.yml --vault-password-file /path/to/file`
 
-Login to the Red Hat Container registry by running the command `podman login registry.redhat.io`, and entering the username and password when prompted.
-
-Run `podman build -t << TCR Hostname >>/<< EE name >>:<< version >> -f context/Containerfile` to build the EE. Once the build has completed, the EE can be used by Automation Controller once it is pushed to TCR, and immediately on the local machine with the CLI tool `ansible-navigator` and argument `--eei`.
-
-Push the EE to TCR by logging into TCR via the TCR hostname `podman login << TCR hostname >>`, and then pushing it using podman `podman push -t << TCR Hostname >>/<< EE name >>:<< version >>`.
+Verify that the EE has been built by running the command `podman pull << registry_hostname >>/<< EE name >>:<< version >>`.

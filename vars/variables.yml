@@ -1,0 +1,13 @@
+---
+# registry.redhat.io details
+ee_base_registry_username: user 
+ee_base_registry_password: password
+
+# where to pull collections from when setting ansible.cfg file
+ee_ah_host: pah 
+ee_ah_token: token
+
+# container registry details
+ee_registry_dest: container.registry 
+ee_registry_username: admin
+ee_registry_password: password123
